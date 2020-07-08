@@ -27,20 +27,36 @@ class ShoppingCart
     total_number_of_products >= @capacity.to_i
   end
 
+  # def products_by_category(category)
+  #   @products.find_all do |product|
+  #     product.category == category
+  #   end
+  # end
+
   def products_by_category(category)
-    @products.find_all do |product|
-      product.category == category
+    result = []
+    @products.each do |product|
+      result << product if product.category == category
     end
+    result
   end
 
   def percentage_occupied
     ((total_number_of_products / @capacity.to_f) * 100).round(2)
   end
 
+  # def sorted_products_by_quantity
+  #   @products.sort_by! do |product|
+  #     -product.quantity
+  #   end
+  # end
+
+  # def sorted_products_by_quantity
+  #   (@products.sort_by(&:quantity)).reverse
+  # end
+
   def sorted_products_by_quantity
-    @products.sort_by! do |product|
-      -product.quantity
-    end
+    @products.sort { |a, b| b.quantity <=> a.quantity }
   end
 
   def product_breakdown
