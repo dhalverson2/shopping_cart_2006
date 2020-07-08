@@ -42,4 +42,12 @@ class ShoppingCart
       -product.quantity
     end
   end
+
+  def product_breakdown
+    result = Hash.new { |hash, key| hash[key] = [] }
+    @products.each do |product|
+      result[product.category] << product
+    end
+    result
+  end
 end
