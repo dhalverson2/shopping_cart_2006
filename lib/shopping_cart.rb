@@ -17,4 +17,10 @@ class ShoppingCart
     {:name => @name, :capacity => @capacity.to_i}
   end
 
+  def total_number_of_products
+    @products.sum do |product|
+      product.quantity
+    end
+  end
+  
 end
